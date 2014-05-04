@@ -19,17 +19,17 @@ Couple that with a few useful development tools like Yeoman, Grunt and Bower and
 
 ## Main features
 
--Generating a bare bones AngularJS app with Yeoman
--Using Grunt to speed up development and help perform repetitive tasks
--Using Bower to add third party plugins/frameworks
--Using RequireJS to optimize and load modules, read more about AMD JS
+- Generating a bare bones AngularJS app with Yeoman
+- Using Grunt to speed up development and help perform repetitive tasks
+- Using Bower to add third party plugins/frameworks
+- Using RequireJS to optimize and load modules, read more about AMD JS
 
 
 ## Prerequisites
 
--A terminal and basic knowledge of the command line
--NodeJS and NPM install
--Fundamental JS, CSS, and HTML knowledge
+- A terminal and basic knowledge of the command line
+- NodeJS and NPM install
+- Fundamental JS, CSS, and HTML knowledge
 
 
 ## Let's get started
@@ -56,7 +56,7 @@ Use your system package manager (brew,port,apt-get,yum etc)
 	grunt serve
 ```
 
-4. If you don't want to run 'grunt build serve', you can call 'bower install', but also make sure the .bowerrc has the proper directory path of your libraries.
+5. If you don't want to run 'grunt build serve', you can call 'bower install', but also make sure the .bowerrc has the proper directory path of your libraries.
 
 ## Bare Essentials:
 You have now loaded the bare essential of a Yeoman application, this build has RequireJS, and Karma.  You could also have run the following code to only get Yeoman+Grunt+AngularJS+Bower
@@ -68,21 +68,22 @@ You have now loaded the bare essential of a Yeoman application, this build has R
 ## What you got!
 So now you have a complete grunt build with automation for minification, single html application, and jslint, it will also bootstrap your application with RequireJS.
 
-Here is a list of just some of the tasks:
--'clean:dist'  -clean directory
--'bower:install' -run the bower install
--'ngtemplates' -minify Angular Js, html files in $templateCache for single index
--'requirejs' -get all dependencies and combine in one file
--'concat' -concat all js files
--'uglify' -uglify all js files
--'less:dist' -compile less files in .tmp
--'autoprefixer' -add all vendor prefixes to styles
--'template:dist' -concat all the compile files into index.html
--'htmlmin' -clean html
--'concurrent:dist' -performs some task parallel to others, like copying files, minify images, svg
--'copy:app' -copy the remaining app files to dist, after concurrent
--'cdnify' -replace Google CDN references
--'compress' -compress the index.html files 
+## Here is a list of just some of the tasks:
+
+- 'clean:dist'  -clean directory
+- 'bower:install' -run the bower install
+- 'ngtemplates' -minify Angular Js, html files in $templateCache for single index
+- 'requirejs' -get all dependencies and combine in one file
+- 'concat' -concat all js files
+- 'uglify' -uglify all js files
+- 'less:dist' -compile less files in .tmp
+- 'autoprefixer' -add all vendor prefixes to styles
+- 'template:dist' -concat all the compile files into index.html
+- 'htmlmin' -clean html
+- 'concurrent:dist' -performs some task parallel to others, like copying files, minify images, svg
+- 'copy:app' -copy the remaining app files to dist, after concurrent
+- 'cdnify' -replace Google CDN references
+- 'compress' -compress the index.html files
 
 
 
