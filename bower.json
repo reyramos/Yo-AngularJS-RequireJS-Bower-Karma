@@ -1,0 +1,45 @@
+{
+  "name": "myBreyerGuide",
+  "version": "0.0.0",
+  "dependencies": {
+    "json3": "~3.2.6",
+    "es5-shim": "~2.1.0",
+    "jquery": "~1.11.0",
+    "bootstrap": "~3.0.3",
+    "angular-bootstrap": "~0.11.0",
+    "requirejs": "latest",
+    "less.js": "latest",
+    "sockjs": "http://cdn.sockjs.org/sockjs-0.3.min.js",
+    "requirejs-text": "2.0.5",
+    "almond": "0.2.5",
+    "normalize-css": "2.1.1",
+    "jquery-cookie": "https://github.com/carhartl/jquery-cookie.git",
+    "jquery-ui": "http://code.jquery.com/ui/jquery-ui-git.js",
+    "ua-parser-js": "latest",
+    "angular": "https://code.angularjs.org/1.2.16/angular.js",
+    "angular-resource": "https://code.angularjs.org/1.2.16/angular-resource.js",
+    "angular-route": "https://code.angularjs.org/1.2.16/angular-route.js",
+    "angular-loader": "https://code.angularjs.org/1.2.16/angular-loader.js",
+    "angular-cookies": "https://code.angularjs.org/1.2.16/angular-cookies.js",
+    "angular-mocks": "https://code.angularjs.org/1.2.16/angular-mocks.js",
+    "angular-animate": "https://code.angularjs.org/1.2.16/angular-animate.js",
+    "angular-sanitize": "https://code.angularjs.org/1.2.16/angular-sanitize.js",
+    "angular-touch": "https://code.angularjs.org/1.2.16/angular-touch.js",
+    "angular-localStorage": "https://raw.github.com/agrublev/angularLocalStorage/master/src/angularLocalStorage.js",
+    "bootstrap-tagsinput": "http://timschlechter.github.io/bootstrap-tagsinput/build/bootstrap-tagsinput.zip",
+    "typeahead": "http://twitter.github.io/typeahead.js/releases/latest/typeahead.bundle.js",
+    "angular-loading-bar": "https://github.com/chieffancypants/angular-loading-bar.git",
+    "mobify": "http://cdn.mobify.com/mobifyjs/build/mobify-2.0.10.min.js",
+    "hide-address-bar": "https://github.com/scottjehl/Hide-Address-Bar.git",
+    "Slidebars": "latest"
+  },
+  "devDependencies": {
+    "angular-mocks": "1.2.15",
+    "angular-scenario": "1.2.15",
+    "chai": "1.5.0",
+    "mocha": "1.8.1"
+  },
+  "resolutions": {
+    "angular": ">=1"
+  }
+}

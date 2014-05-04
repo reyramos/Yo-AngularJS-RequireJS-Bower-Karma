@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]><html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--><html class="no-js"> <!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<meta name="HandheldFriendly" content="True">
+	<meta name="MobileOptimized" content="320">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<% if (config.environment === 'dev') { %>
+	<link rel="stylesheet/less" type="text/css" href="/css/styles.less">
+	<script type="text/javascript" src="/lib/less.js/dist/less-1.7.0.min.js"></script>
+	<% } else { %>
+	<style><% print	(config.css_sources); %></style>
+	<% } %>
+
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+	<link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+</head>
+<body>
+<!--[if lt IE 7]>
+<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<![endif]-->
+<!-- Add your site or application content here -->
+<div class="container" ng-include="'/views/main.html'" ng-controller="MainCtrl"></div>
+
+
+<% if (config.environment === 'dist') { %>
+<script type="text/javascript"><%print(config.js_sources);%></script>
+<% } else { %>
+<script type="text/javascript" data-main="/js/main" src="/lib/requirejs/require.js"></script>
+<% } %>
+
+</body>
+</html>
