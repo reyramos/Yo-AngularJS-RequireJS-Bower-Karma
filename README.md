@@ -33,30 +33,29 @@ Couple that with a few useful development tools like Yeoman, Grunt and Bower and
 
 
 ## Let's get started
-1. Install Node.JS
+- Install Node.JS
 Use your system package manager (brew,port,apt-get,yum etc)
 
-2. Install global Yeoman, Grunt and Bower commands, once you install the following commands globally, you can run 'npm install' to run the components in the package.json file
+- Install global Yeoman, Grunt and Bower commands, once you install the following commands globally, you can run 'npm install' to run the components in the package.json file
 
 ```bash
 	npm install -g yo grunt-cli bower
 	npm install //load all your additional package.json components
 ```
 
-3. Run 'grunt build serve' for the first time to load all the bower components
+- Run 'grunt build serve' for the first time to load all the bower components
 
 ```bash
 	grunt build serve
 ```
 
-4. When ever you make changes to bower.json files, you will need to run the command above, to update your lib folder, it will also start the development server. Otherwise you can run 
-'grunt serve'
+- When ever you make changes to bower.json files, you will need to run the command above, to update your lib folder, it will also start the development server. Otherwise you can run 'grunt serve'
 
 ```bash
 	grunt serve
 ```
 
-5. If you don't want to run 'grunt build serve', you can call 'bower install', but also make sure the .bowerrc has the proper directory path of your libraries.
+- If you don't want to run 'grunt build serve', you can call 'bower install', but also make sure the .bowerrc has the proper directory path of your libraries.
 
 ## Bare Essentials:
 You have now loaded the bare essential of a Yeoman application, this build has RequireJS, and Karma.  You could also have run the following code to only get Yeoman+Grunt+AngularJS+Bower
