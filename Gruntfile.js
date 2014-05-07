@@ -22,48 +22,44 @@ module.exports = function( grunt ) {
 						   },
 						   // Watches files for changes and runs tasks based on the changed files
 						   watch:{
-							   js:{
-								   files:['<%= yeoman.app %>/js/**/*.js'],
-								   tasks:['newer:jshint:all'],
-								   options:{
-									   livereload:true
-								   }
+   							   js:{
+   								   files:['<%= yeoman.app %>/js/**/*.js'],
+   								   tasks:['newer:jshint'],
+  								   options:{
+   									   livereload:true
+   								   }
+   							   },
+							   less:{
+								   files:["<%= yeoman.app %>/css/**/*.less"],
+								   tasks: ['less:dev']
 							   },
 							   jsTest:{
 								   files:['test/spec/**/*.js'],
 								   tasks:['newer:jshint:test', 'karma']
-							   },
-							   styles:{
-								   files:['<%= yeoman.app %>/css/**/*.css'],
-								   tasks:['newer:copy:styles', 'autoprefixer']
-							   },
-							   less:{
-								   files:["{.tmp,<%= yeoman.app %>}/css/*.less"],
-								   tasks:["less:dev", "livereload", "autoprefixer"]
 							   },
 							   gruntfile:{
 								   files:['Gruntfile.js']
 							   },
 							   livereload:{
 								   options:{
-									   livereload:'<%= connect.options.livereload %>'
+									   livereload:true
 								   },
 								   files:[
-									   '<%= yeoman.app %>/**/*.html',
-									   '{.tmp,<%= yeoman.app %>}/css/**/*.less',
+									   '<%= yeoman.app %>/{,*/}*.html',
 									   '<%= yeoman.app %>/img/**/*.{png,jpg,jpeg,gif,webp,svg}'
 								   ],
-								   tasks:["livereload", "template:dev"]
+								   tasks:['template:dev']
 							   }
 						   },
 						   //Compile less files to css
 						   less:{
 							   dev:{
 								   options:{
-									   paths:["<%= yeoman.app %>/css"]
+									   paths:["<%= yeoman.app %>/css"],
+									   yuicompress:false
 								   },
 								   files:{
-									   ".tmp/css/main.css":"<%= yeoman.app %>/css/styles.less"
+									   ".tmp/styles.css":"<%= yeoman.app %>/css/styles.less"
 								   }
 							   },
 							   dist:{
@@ -324,17 +320,6 @@ module.exports = function( grunt ) {
 									   }
 								   ]
 							   },
-							   //copy any json files that lies outside of the app folder
-							   json:{
-								   files:[
-									   {
-										   expand:true,
-										   cwd:"json",
-										   dest:"<%= yeoman.dist %>/json",
-										   src:["**/*.json"]
-									   }
-								   ]
-							   },
 							   styles:{
 								   expand:true,
 								   cwd:'<%= yeoman.app %>/css',
@@ -352,7 +337,6 @@ module.exports = function( grunt ) {
 							   ],
 							   dist:[
 								   'copy:temp'
-								   , 'copy:json'
 								   , 'imagemin'
 								   , 'svgmin'
 							   ]

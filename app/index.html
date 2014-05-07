@@ -15,7 +15,16 @@
 
 	<% if (config.environment === 'dev') { %>
 	<link rel="stylesheet/less" type="text/css" href="/css/styles.less">
+	<script>
+		less = {
+			env: "development",
+			logLevel: 2,
+			async: true,
+			dumpLineNumbers: "mediaQuery"
+		};
+	</script>
 	<script type="text/javascript" src="/lib/less.js/dist/less-1.7.0.min.js"></script>
+	<script>less.watch();</script>
 	<% } else { %>
 	<style><% print	(config.css_sources); %></style>
 	<% } %>
