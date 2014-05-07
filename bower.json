@@ -24,14 +24,7 @@
     "angular-mocks": "https://code.angularjs.org/1.2.16/angular-mocks.js",
     "angular-animate": "https://code.angularjs.org/1.2.16/angular-animate.js",
     "angular-sanitize": "https://code.angularjs.org/1.2.16/angular-sanitize.js",
-    "angular-touch": "https://code.angularjs.org/1.2.16/angular-touch.js",
-    "angular-localStorage": "https://raw.github.com/agrublev/angularLocalStorage/master/src/angularLocalStorage.js",
-    "bootstrap-tagsinput": "http://timschlechter.github.io/bootstrap-tagsinput/build/bootstrap-tagsinput.zip",
-    "typeahead": "http://twitter.github.io/typeahead.js/releases/latest/typeahead.bundle.js",
-    "angular-loading-bar": "https://github.com/chieffancypants/angular-loading-bar.git",
-    "mobify": "http://cdn.mobify.com/mobifyjs/build/mobify-2.0.10.min.js",
-    "hide-address-bar": "https://github.com/scottjehl/Hide-Address-Bar.git",
-    "Slidebars": "latest"
+    "angular-touch": "https://code.angularjs.org/1.2.16/angular-touch.js"
   },
   "devDependencies": {
     "angular-mocks": "1.2.15",
