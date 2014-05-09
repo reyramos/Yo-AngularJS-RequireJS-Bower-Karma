@@ -1,16 +1,19 @@
 // Generated on 2014-05-03 using generator-angular 0.8.0
 'use strict';
-// # Globbing
-// for performance reasons we're only matching one level down:
-// 'test/spec/{,*/}*.js'
-// use this if you want to recursively match all subfolders:
-// 'test/spec/**/*.js'
+
+var  modRewrite, mountFolder;
+
+modRewrite = require ( "connect-modrewrite" );
+mountFolder = function( connect, dir ) {
+	return connect["static"] ( require ( "path" ).resolve ( dir ) );
+};
+
 module.exports = function( grunt ) {
 
 	// Load grunt tasks automatically
 	require ( 'load-grunt-tasks' ) ( grunt, {config:'package.json', scope:['devDependencies', 'dependencies']} );
 	// Time how long tasks take. Can help when optimizing build times
-	require ( 'time-grunt' ) ( grunt );
+	//	require ( 'time-grunt' ) ( grunt );
 	// Define the configuration for all the tasks
 	grunt.initConfig ( {
 
@@ -22,23 +25,25 @@ module.exports = function( grunt ) {
 						   },
 						   // Watches files for changes and runs tasks based on the changed files
 						   watch:{
-   							   js:{
-   								   files:['<%= yeoman.app %>/js/**/*.js'],
-   								   tasks:['newer:jshint'],
-  								   options:{
-   									   livereload:true
-   								   }
-   							   },
+							   options:{
+								   livereload:true,
+								   spawn:false
+							   },
+							   //							   js:{
+							   //								   files:['<%= yeoman.app %>/js/**/*.js'],
+							   //								   tasks:['newer:jshint'],
+							   //								   options:{
+							   //									   livereload:true
+							   //								   }
+							   //							   },
 							   less:{
 								   files:["<%= yeoman.app %>/css/**/*.less"],
-								   tasks: ['less:dev']
+								   tasks: ['newer:less:dev']
+
 							   },
 							   jsTest:{
 								   files:['test/spec/**/*.js'],
 								   tasks:['newer:jshint:test', 'karma']
-							   },
-							   gruntfile:{
-								   files:['Gruntfile.js']
 							   },
 							   livereload:{
 								   options:{
@@ -55,8 +60,7 @@ module.exports = function( grunt ) {
 						   less:{
 							   dev:{
 								   options:{
-									   paths:["<%= yeoman.app %>/css"],
-									   yuicompress:false
+									   paths:["<%= yeoman.app %>/css"]
 								   },
 								   files:{
 									   ".tmp/styles.css":"<%= yeoman.app %>/css/styles.less"
@@ -113,17 +117,18 @@ module.exports = function( grunt ) {
 						   template:{
 							   dev:{
 								   files:{
-									   ".tmp/index.html":"<%= yeoman.app %>/index.html"
+									   ".tmp/index.html":"<%= yeoman.app %>/index.template"
 								   },
 								   environment:"dev"
 							   },
 							   dist:{
 								   files:{
-									   ".tmp/index-concat.html":"<%= yeoman.app %>/index.html"
+									   ".tmp/index-concat.html":"<%= yeoman.app %>/index.template"
 								   },
 								   environment:"dist",
 								   css_sources:'<%= grunt.file.read(".tmp/styles.css") %>',
-								   js_sources:'<%= grunt.file.read(".tmp/scripts.js") %>'
+								   js_sources:'<%= grunt.file.read(".tmp/scripts.js") %>',
+								   buildVersion:grunt.option ( 'buildVersion' )
 							   }
 						   },
 						   //minify Angular Js, html files with $templateCache
@@ -140,16 +145,15 @@ module.exports = function( grunt ) {
 						   connect:{
 							   options:{
 								   port:9000,
-								   hostname:"0.0.0.0",
-								   livereload:35729
+								   hostname:"0.0.0.0"
 							   },
 							   livereload:{
 								   options:{
-									   open:true,
-									   base:[
-										   '.tmp',
-										   '<%= yeoman.app %>'
-									   ]
+									   middleware:function( connect ) {
+										   return [
+											   modRewrite ( ["!png|jpg|gif|css|js|less|html|otf|ttf|eot|woff|svg|mp3|ogg$ /index.html [L]"]),
+											   mountFolder ( connect, ".tmp" ), mountFolder ( connect, "app" )];
+									   }
 								   }
 							   },
 							   test:{
@@ -174,10 +178,6 @@ module.exports = function( grunt ) {
 								   jshintrc:'.jshintrc',
 								   reporter:require ( 'jshint-stylish' )
 							   },
-							   all:[
-								   'Gruntfile.js',
-								   '<%= yeoman.app %>/js/**/*.js'
-							   ],
 							   test:{
 								   options:{
 									   jshintrc:'test/.jshintrc'
@@ -320,6 +320,17 @@ module.exports = function( grunt ) {
 									   }
 								   ]
 							   },
+							   //copy any json files that lies inside of the app folder
+							   json:{
+								   files:[
+									   {
+										   expand:true,
+										   cwd:"<%= yeoman.app %>/json",
+										   dest:"<%= yeoman.dist %>/json",
+										   src:["**/*.json"]
+									   }
+								   ]
+							   },
 							   styles:{
 								   expand:true,
 								   cwd:'<%= yeoman.app %>/css',
@@ -337,9 +348,14 @@ module.exports = function( grunt ) {
 							   ],
 							   dist:[
 								   'copy:temp'
+								   , 'copy:json'
 								   , 'imagemin'
 								   , 'svgmin'
-							   ]
+							   ],
+							   options: {
+								   limit:5,
+								   logConcurrentOutput: true
+							   }
 						   },
 						   uglify:{
 							   options:{
@@ -386,6 +402,11 @@ module.exports = function( grunt ) {
 							   }
 						   }
 					   } );
+
+	grunt.registerTask("socket.io", function() {
+		return require("./server/server.js");
+	});
+
 	grunt.registerTask ( 'serve', function( target ) {
 		if( target === 'dist' )
 		{
@@ -393,6 +414,7 @@ module.exports = function( grunt ) {
 		}
 		grunt.task.run ( [
 							 'clean:server',
+							 'socket.io',
 							 'template:dev',
 							 'concurrent:server',
 							 'autoprefixer',
@@ -406,6 +428,7 @@ module.exports = function( grunt ) {
 	} );
 	grunt.registerTask ( 'test', [
 		'clean:server',
+		//'socket.io',
 		'concurrent:test',
 		'autoprefixer',
 		'connect:test',
@@ -413,7 +436,7 @@ module.exports = function( grunt ) {
 	] );
 
 	grunt.registerTask ( 'build', [
-		  'clean:dist' //clean directory
+		'clean:dist' //clean directory
 		, 'bower:install' //run the bower install
 		, 'ngtemplates' //minify Angular Js, html files in templateCache
 		, 'requirejs' //get all dependencies and combine in one file
@@ -425,8 +448,8 @@ module.exports = function( grunt ) {
 		, 'htmlmin' //clean html
 		, 'concurrent:dist' //performs some task paraller to others
 		, 'copy:app' //copy the remaining app files to dist
-		, 'cdnify' //replace Google CDN references
-		//, "compress" //compress the index.html files
+		//		, 'cdnify' //replace Google CDN references
+		//		, "compress" //compress the index.html files
 	] );
 	grunt.registerTask ( 'default', [
 		'newer:jshint',
