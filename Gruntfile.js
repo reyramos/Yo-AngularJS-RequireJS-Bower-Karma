@@ -29,13 +29,13 @@ module.exports = function( grunt ) {
 								   livereload:true,
 								   spawn:false
 							   },
-							   //							   js:{
-							   //								   files:['<%= yeoman.app %>/js/**/*.js'],
-							   //								   tasks:['newer:jshint'],
-							   //								   options:{
-							   //									   livereload:true
-							   //								   }
-							   //							   },
+							    js:{
+							      files:['<%= yeoman.app %>/js/**/*.js'],
+							      tasks:['newer:jshint'],
+							      options:{
+							   	   livereload:true
+							   	   }
+							     },
 							   less:{
 								   files:["<%= yeoman.app %>/css/**/*.less"],
 								   tasks: ['newer:less:dev']
@@ -117,13 +117,13 @@ module.exports = function( grunt ) {
 						   template:{
 							   dev:{
 								   files:{
-									   ".tmp/index.html":"<%= yeoman.app %>/index.template"
+									   ".tmp/index.html":"<%= yeoman.app %>/index.html"
 								   },
 								   environment:"dev"
 							   },
 							   dist:{
 								   files:{
-									   ".tmp/index-concat.html":"<%= yeoman.app %>/index.template"
+									   ".tmp/index-concat.html":"<%= yeoman.app %>/index.html"
 								   },
 								   environment:"dist",
 								   css_sources:'<%= grunt.file.read(".tmp/styles.css") %>',
