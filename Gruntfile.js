@@ -403,9 +403,6 @@ module.exports = function( grunt ) {
 						   }
 					   } );
 
-	grunt.registerTask("socket.io", function() {
-		return require("./server/server.js");
-	});
 
 	grunt.registerTask ( 'serve', function( target ) {
 		if( target === 'dist' )
@@ -414,7 +411,6 @@ module.exports = function( grunt ) {
 		}
 		grunt.task.run ( [
 							 'clean:server',
-							 'socket.io',
 							 'template:dev',
 							 'concurrent:server',
 							 'autoprefixer',
@@ -428,7 +424,6 @@ module.exports = function( grunt ) {
 	} );
 	grunt.registerTask ( 'test', [
 		'clean:server',
-		//'socket.io',
 		'concurrent:test',
 		'autoprefixer',
 		'connect:test',
